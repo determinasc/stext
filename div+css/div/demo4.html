@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>列表和超链接伪类</title>
+		<style>
+			ul{
+				/*
+				list-style-type:decimal;
+				list-style-image: url(img/eg_arrow.gif);
+				
+				list-style:  outside url(img/eg_arrow.gif);
+				*/
+				list-style: none;
+				
+			}
+			
+			a{text-decoration: none;}
+			a:link{
+				color:red;
+			}
+			a:hover{
+				color:navajowhite;
+			}
+			a:visited{
+				color:blue;
+			}
+			a:active {
+				color: #000000;
+			}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li>第一课</li>
+			<li>第二课</li>
+			<li>第三课</li>
+			<li>第四课</li>
+		</ul>
+		
+		<ul>
+			<li><a href="#">第一课</a></li>
+			<li><a href="#">第二课</a></li>
+			<li><a href="#">第三课</a></li>
+			<li><a href="#">第四课</a></li>
+		</ul>
+		
+		
+	</body>
+</html>

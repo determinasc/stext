@@ -1,0 +1,262 @@
+HTML基础学习
+
+
+1、简单的HTML页面架构
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		
+	</head>
+	<body>
+	</body>
+</html>
+
+
+2、TML常见标签
+
+
+meta标签
+
+
+<meta> 元素可提供有关页面的元信息（meta-information），比如针对搜索引擎和更新频度的描述和关键词。
+
+
+有利于网站seo
+
+meta name="keywords" content="网络安全，WEB渗透，数据安全，渗透测试，安全培训" />
+
+
+<link> 标签定义文档与外部资源的关系。
+
+<script> 引入js文件
+
+注释
+
+<!--这是一段注释。注释不会在浏览器中显示。-->
+
+
+<p>这是一段普通的段落。</p>
+
+标题标签
+由大到小
+<h1>h1</h1>
+<h2>h2</h2>
+<h3>h3</h3>
+<h4>h4</h4>
+<h5>h5</h5>
+<h6>6</h6>
+
+</br> 换行标签
+
+<hr> 换行线标签
+
+
+文本属性
+
+<strong>加粗</strong>
+<b></b>加粗
+<i></i>斜体
+<u></u> 下划线
+
+<sup></sup>上标
+<sub></sub>下标
+<del></del> 删除线
+<font></font> 规定字体属性
+	size 字体的大小
+	color 字体颜色
+	
+
+代码样式原样输出
+<pre></pre>
+
+
+3、form表单和input标签
+
+form表单 规定当提交表单时向何处发送表单数据
+
+method 提交的方法有 get、post
+
+get方式就是在浏览器上显示出来
+
+post是不会在浏览器上显示出来的 
+
+
+规定在发送表单数据之前如何对其进行编码。
+
+enctype 属性可能的值
+		application/x-www-form-urlencoded
+		multipart/form-data
+		text/plain
+
+
+input标签
+
+name：同样是表示的该文本输入框名称。
+size：输入框的长度大小。
+maxlength：输入框中允许输入字符的最大数。
+value：输入框中的默认值
+readonly：表示该框中只能显示，不能添加修改。
+
+
+input类型
+
+type=password  密码输入框
+
+type=file 文件上传
+
+type=hidden 隐藏域
+
+type=button 按钮
+
+
+
+radio 多选框  checked="checked" 默认选择
+
+type=submit 提交按钮
+type=reset   重置按钮
+
+
+textarea 文本域
+
+<textarea rows="10" cols="20">
+
+
+</textarea > 
+
+
+选择框
+
+<select name="address">
+	<option value="beijing">北京</option>
+	<option value="shanghai">上海</option>
+	<option value="guangzhou">广州</option>
+</select>
+
+
+
+
+4、a标签、img标签、table标签
+
+
+a标签的作用：就是用于控制界面与页面之间的跳转的
+
+
+默认就是self
+self：用于在当前选项卡中跳转，也就是不新建页面跳转
+
+
+_blank ：用于在新的选项卡中跳转，也就是新建页面跳转
+
+<a href="http://www.baidu.com" target="self">百度</a>
+<a href="http://www.baidu.com" target="_blank">百度</a>
+
+
+
+锚文本
+<a href="#2">锚点</a>
+<a name="2">锚点</a>
+
+
+
+
+img 元素向网页中嵌入一幅图像。
+
+
+<img src="/i/eg_tulip.jpg"  alt="上海鲜花港 - 郁金香" />
+
+
+alt 规定图像的替代文本。
+
+src  规定显示图像的url
+
+width 规定图片的高度
+height 规定图片的宽度
+
+
+
+table 表格
+
+border 边框
+width 宽度
+height 高度
+colspan 行
+rowspan 竖
+<th></th> 单元格的头信息
+<tr>行</tr>
+<td>表格</td>
+cellpadding 单元边与内容的空白
+cellspacing 单元格的空白
+
+5、列表标签
+
+<ul>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+</ul>
+
+
+无序列表
+	项目符号 square circle  disc
+	
+有序列表
+    数字列表 默认 数字
+	小写字母列表 a
+	大写字母列表 A
+	罗马字母列表  I
+	小写罗马字母列表 i
+
+	
+
+
+6、框架的使用
+
+frameset 不能在body内使用
+frame 一般都是在frameset中使用
+cols 定义框架集中列的数目和尺寸
+rows 定义框架集中行的数目和尺寸
+
+scrolling   滚动条
+auto	在需要的情况下出现滚动条（默认值）。
+yes	始终显示滚动条（即使不需要）。
+no	从不显示滚动条（即使需要）
+
+* 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

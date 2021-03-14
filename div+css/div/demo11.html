@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div{
+				width: 200px;
+				height: 200px;
+				border: 1px solid red;
+			}
+			.demo1{
+				background: red;
+			}
+			.demo2{
+				background: blue;
+				/*position: fixed;*/
+				position: relative;
+				width: 400px;
+				height: 400px;
+				top:50px;
+				left: 50px;
+			}
+			.demo3{
+				background: green;
+			}
+			.demo4{
+				background: black;
+				position: absolute;
+				top:50px;
+				left: 50px;
+				z-index: 2;
+			}
+			.demo5{
+				background: yellow;
+				position: absolute;
+				top:60px;
+				left: 60px;
+				z-index: 1;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="demo1"></div>
+		<div class="demo2"><div class="demo4"></div><div class="demo5"></div></div>
+		<div class="demo3"></div>
+		
+	</body>
+</html>
