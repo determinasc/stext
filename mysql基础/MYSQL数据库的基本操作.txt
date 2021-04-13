@@ -1,0 +1,283 @@
+数据库的基本操作
+
+1、MYSQL登录与退出
+	输入 mysql -uroot -p -P3306 -h127.0.0.1
+	退出的三种方法
+	exit;
+	quit;
+	\q;
+
+2、MYSQL数据库的一些解释
+
+注意：数据库就相当于文件夹
+      表就相当于文件
+	  
+3、mysql注释符有三种：
+	1、#...
+	2、"--  ..."
+	3、/*...*/
+	  
+4、数据库的一些基本操作
+
+	一.数据库的增删改查(sql语句)
+
+	增：create database db1;
+	删：drop database db1;
+	改：alter database db1 charset utf8
+	查：show databases;#查看所有的数据库
+	
+	设置默认的utf8,在配置文件中：写上character_set_server = utf8
+
+	use db2   #代表你鼠标双击切换目录
+	RENAME database olddbname TO newdbname(5.1.23版本以前)
+    show create database db1;查看建数据库语句
+	show status; 显示一些系统特定资源的信息
+	show tables 查看当前库里面所有的表
+	desc tabl_name; 显示表结构，字段类型，主键，是否为空等属性，但不显示外键。
+    show databases 查看这个mysql里面有多少个库
+
+	select database(); #查看你当前在哪个文件夹
+	select use();#查看当前在用户
+	use mysql#选择数据库
+	select password from user where user='root';查看当前数据库 里面的表user 用户为root的密码
+=============================================================================================================================
+table 表的操作
+	1、查看表结构
+	desc table
+	DESCRIBE 表名;
+	2、查看表的内容
+	select * from table_name
+	3、建立表
+	CREATE TABLE 表名 (
+		属性名 数据类型 [完整约束条件],
+		属性名 数据类型 [完整约束条件],
+		...
+		...
+		属性名 数据类型 [完整约束条件]
+	);
+	
+	字段名就是属性名
+	
+	完整的建立表的语句
+	create table if not EXISTS users(
+	id int(7) AUTO_INCREMENT,
+	username varchar(100) not null,
+	password varchar(100) not null,
+	PRIMARY KEY(id)
+	)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+	
+	if not exists表示当相同的表名存在时，则不执行此创建语句，避免语句执行错误
+	ENGINE=InnoDB DEFAULT CHARSET=utf8;设置表的引擎和默认的字符类型
+	
+	常见的数据库引擎 InnoDB myisam 
+	
+	数据类型 
+	https://www.cnblogs.com/-xlp/p/8617760.html
+	
+	4、约束条件
+
+		PRIMARY KEY 标识该属性为该表的主键，可以唯一的标识对应的元组
+
+		FOREIGN KEY 标识该属性为该表的外键，是与之联系某表的主键
+
+		NOT NULL	标识该属性不能为空
+
+		UNIQUE 标识该属性的值是唯一的
+
+		AUTO_INCREMENT	标识该属性的值是自动增加，这是MySQL的SQL语句的特色
+
+		DEFAULT	 为该属性设置默认值
+	
+	5、修改表的操作
+	修改表
+		格式：ALTER TABLE 旧表名 RENAME 新表名;
+	
+	修改字段的数据类型
+		ALTER TABLE 表名 MODIFY 属性名 数据类型;
+
+	修改字段名：
+		ALTER TABLE 表名 CHANGE 旧属性名 新属性名 新数据类型;
+	
+	增加字段名
+		ALTER TABLE 表名 ADD 属性名x 数据类型 [完整性约束条件];
+		ALTER TABLE 表名 ADD 属性名x 数据类型 [完整性约束条件] FIRST;
+		ALTER TABLE 表名 ADD 属性名x 数据类型 [完整性约束条件] AFTER 属性名3;
+	
+	删除字段
+		ALTER TABLE 表名 DROP 属性名;
+
+	更改表的存储引擎
+		格式：ALTER TABLE 表名 ENGINE = 存储引擎名;
+
+=============================================================================
+数据的增删改查
+
+增
+
+语法：INSERT INTO 表名（字段名1，字段名2，…）VALUES（值1，值2，…）；
+insert into users (id,username,password)values(1,'moon','123456');
+
+语法：INSERT INTO 表名 VALUES(值11，值2，…）；
+insert into users values(null,'test','123456');
+
+语法：INSERT INTO 表名 SET 字段名1=值1[,字段名2=值2，…]
+举例：INSERT INTO student SET id=4，name='zhaoliu',grade=72;
+
+同时添加多条数据
+
+语法：INSERT INTO 表名[(字段名1，字段名2，…)] VALUES （值1，值2，…），（值1，值2，…），
+insert into users (id,username,password) values(null,'moon','123456'),(null,'alex','123456');
+
+语法：INSERT INTO 表名[(字段名1，字段名2，…)] VALUES （值1，值2，…），（值1，值2，…），（值1，值2，…）
+insert into users values (null,'moon1','123456'),(null,'alex1','123456');
+
+删
+
+DELETE FROM 表名 [WHERE 条件表达式]
+delete from users where id=1;
+
+删除全部数据
+
+若DELETE语句中没有使用WHERE语句，则会将表中所有记录都删除。
+DELETE FROM 表名
+
+删除全部数据的另一种方法—TRUNCATE
+TRUNCATE 表名
+
+DELETE与TRUNCATE区别
+
+TRUNCATE语句删除记录后，新添加的记录时，自动增长字段会默认从1开始
+delete 可以使用where指定区间
+
+更新
+
+语法：UPDATE 表名 SET 字段名1=值1，[ ，字段名2=值2，…][ WHERE 条件表达式 ]
+update users set  password='aaaa' where id=1;
+update users set  password='123456',username='moon' where id=1
+update users set  password=456789;
+
+查 
+
+查询所有的字段
+select * from users;
+
+查询指定的字段
+select username,password from users;
+
+按条件调节查询
+select * from users where id=1;   #=,>,<,!=,=<,>=
+
+按关系来查询
+语法：SELECT 字段名1，字段名2，…FROM 表名WHERE 条件表达式
+
+in 查询
+SELECT * FROM student2 WHERE id IN (1,2,3);
+
+带 BETWEEN AND 关键字的查询
+select * from users where id not between 1 and 10;
+
+带DISTINCT关键字的查询(去重)
+select distinct * from users;
+
+like查询 一般都会给跟着%
+select * from users where username like "%m%" ;
+
+下划线 _ 匹配一个字符
+select* from users where username like "moo_";
+
+and查询
+
+ 满足多个条件
+ select * from users where id=1 and username='moon';
+ 
+or查询
+ 
+ 满足任意一个条件
+ select * from users where id=1 or username='moon';
+
+OR 和 AND 一起使用的时候，AND 的优先级高于 OR，因此二者一起使用时，会先运算 AND 两
+边的表达式，再运算 OR 两边的表达式。
+select * from users where id >5 and password='123456c' or username='moon1';
+
+
+聚合查询
+
+select count(*) from users;
+select count(id) from users;
+
+COUNT() 返回某列的行数
+SUM() 返回某列值的和
+AVG() 返回某列的平均值
+MAX() 返回某列的最大值
+MIN() 返回某列的最小值
+
+order by:
+　　用来对数据库的一组数据进行排序
+　　  desc：降序
+　　  asc：升序
+group by：
+　　“By”指定的规则对数据进行分组，所谓的分组就是将一个“数据集”划分成若干个“小区域”，然后针对若干个“小区域”进行数据处理。
+
+分组查询
+
+GROUP BY
+
+SELECT * FROM users GROUP BY password;
+
++----+----------+----------+
+| id | username | password |
++----+----------+----------+
+|  3 | moon1    | 123456   |
+|  1 | moon     | 456789   |
++----+----------+----------+
+2 rows in set (0.01 sec)
+
+使用 LIMIT 限制查询结果的数量(limit 2,10表示从第3行后面10个)
+
+select * from users limit 2,10;
+select * from users as u where u.id=1;
+
+为表和字段取别名
+select username as myname from users;
+
+=============================================================== 
+mysql的子查询
+
+where型子查询
+    （把内层查询结果当作外层查询的比较条件）	
+		 select * from users where id in (select id from users where id>10);	 	 
+					
+from型子查询 
+	(把内层的查询结果供外层再次查询)						
+		select * from (select * from users where id>=10) as age_10;	
+			(select * from users where id>=10)查询出来的是一个集合 别名为age_10
+			select * from age_10
+			
+exists型子查询
+	（把外层查询结果拿到内层，看内层的查询是否成立）
+	 1
+	 0
+     select * from users where EXISTS (select * from users where id>1)
+
+
+联合查询（两个表的查询）
+
+CREATE TABLE `news` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) not NULL,
+  `content` varchar(255) not null,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8; 
+
+insert into news (title,content)values('a1','a1');
+
+注释：默认地，UNION 操作符选取不同的值。如果允许重复的值，请使用 UNION ALL。
+当 ALL 随 UNION 一起使用时（即 UNION ALL），不消除重复行
+
+union 操作符选取不同的值
+UNION ALL 查询全部 而且不会消除重复的行
+
+union的用法及注意事项
+	两次查询的列数必须一致
+
+select * from users union select *,1 from news;
