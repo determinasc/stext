@@ -1,0 +1,5 @@
+127.0.0.1 localhost
+192.168.31.125 www.demo.com www.xsstools.com 
+192.168.31.105 www.blogs.com target_sys.com www.demo1.com www.diancms.com  www.ecms.com www.rbac.com www.yijuhua.com www.wordpress.com www.wzxmt.com
+192.168.31.115 upload.moonteam.com include.moonteam.com
+192.168.31.130 www.webtester.com
