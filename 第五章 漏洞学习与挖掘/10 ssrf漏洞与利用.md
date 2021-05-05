@@ -5,7 +5,7 @@ SSRF 形成的原因大都是由于服务端提供了从其他服务器应用获
 url是远程目标的文本
 
 ```http
-http://www.webtester.com/ssrf.php?url=http://www.moonsec.com/robots.txt
+http://www.webtester.com/ssrf.php?url=http://www.demo1.com/robots.txt
 ```
 
 漏洞代码ssrf.php

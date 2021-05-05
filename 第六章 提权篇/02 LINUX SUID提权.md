@@ -73,5 +73,3 @@ export PATH=.:$PATH
 
 就可以执行任意命令
 
-![img](file:///C:\Users\wzxmt\AppData\Local\Temp\ksohtml8972\wps5.jpg) 
-
